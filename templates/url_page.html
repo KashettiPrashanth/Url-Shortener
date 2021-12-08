@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} 
+Home
+{% endblock %}
+
+{% block content %}
+<form  method="post">
+    <br>
+    <br>
+    <br>
+    <br>
+    <center><h2><label for="url">Enter Your URL here</label></h2></center>
+   
+
+    <center><input type="url" name="original_url" id="url"
+       placeholder="https://example.com"
+       pattern="https://.*"  style="font-size: 14pt; height: 30px; width:680px; " required></center>
+    <br>  
+    <center><h3><button>Shorten</button></h3></center>
+
+</form>
+
+{% endblock %}

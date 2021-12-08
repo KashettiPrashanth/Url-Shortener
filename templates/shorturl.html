@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Short URL{% endblock %}
+
+{% block content %}
+
+    
+
+    <p>http://127.0.0.1:5000/{{short_url_display}}</p>
+
+    <button onclick="handleCopyTextFromParagraph()">Copy</button>
+    
+<script>
+        function handleCopyTextFromParagraph() {
+  const body = document.querySelector('body');
+  const paragraph = document.querySelector('p');
+  const area = document.createElement('textarea');
+  body.appendChild(area);
+
+  area.value = paragraph.innerText;
+  area.select();
+  document.execCommand('copy');
+
+  body.removeChild(area);
+}      
+</script>
+{% endblock %}
