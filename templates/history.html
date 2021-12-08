@@ -3,6 +3,6 @@
 
 {% block content %}
     {% for url in vals %}
-        <p><strong>Long:</strong> {{url.long}}  <strong>Short:</strong>{{url.short}} </p>
+        <p><strong>Long:</strong> {{url.long}}  <strong>Short:</strong>{{url.short}} <strong>On Date:</strong> {{url.date}}  <strong>at time:</strong>{{url.time}} </p>
     {% endfor %}
 {% endblock %}

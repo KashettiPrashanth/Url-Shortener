@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import random
 import string
+import datetime
 import os
 
 app = Flask(__name__)
@@ -20,12 +21,16 @@ class Urls(db.Model):
     id_ = db.Column("id_", db.Integer, primary_key=True)
     long = db.Column("long", db.String())
     short = db.Column("short", db.String(10))
+    date= db.Column("date",db.String())
+    time=db.Column("time",db.String())
 
-    def __init__(self, long, short):
+    def __init__(self, long, short,date,time):
         self.long = long
         self.short = short
+        self.date= date
+        self.time= time
     def __repe__(self):
-        return "original url - {} and shorten url-{}".format(self.long, self.short)
+        return "original url - {} and shorten url-{}, on date {} at time - {}".format(self.long, self.short,self.date,self.time)
 
 
 def shorten_url():
@@ -42,6 +47,8 @@ def shorten_url():
 def home():
     if request.method == "POST":
         url_received = request.form.get("original_url")
+        date_received=str(datetime.datetime.now().strftime("%d:%m:%Y"))
+        time_received=str(datetime.datetime.now().strftime("%H:%M:%S"))
         found_url = Urls.query.filter_by(long=url_received).first()
 
         if found_url:
@@ -49,7 +56,7 @@ def home():
         else:
             short_url = shorten_url()
             print(short_url)
-            new_url = Urls(url_received, short_url)
+            new_url = Urls(url_received, short_url,date_received,time_received)
             db.session.add(new_url)
             db.session.commit()
             return redirect(url_for("display_short_url", url=short_url))
