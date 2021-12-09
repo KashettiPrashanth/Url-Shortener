@@ -1,8 +1,32 @@
 {% extends "base.html" %}
+
 {% block title %}View all URLS{% endblock %}
 
 {% block content %}
-    {% for url in vals %}
-        <p><strong>Long:</strong> {{url.long}}  <strong>Short:</strong>{{url.short}} <strong>On Date:</strong> {{url.date}}  <strong>at time:</strong>{{url.time}} </p>
-    {% endfor %}
+<style>
+    table, th, td {
+        border:1px solid black;
+    }
+    </style>
+<body>
+<center>
+    <p style="color:cornsilk; font-weight: bolder; font-size: larger;"><h2>Url Logs</h2></p>
+<table style="width:10%">
+    <tr>
+        <th ><center>URL_ID</center></th>
+        <th ><center>ORIGINAL_URL</center></th>
+        <th ><center>COMPRESSED_URL</center></th>
+        <th ><center>DATE_ADDED</center></th>
+        <th ><center>TIME_ADDED</center></th>
+    </tr>
+{% for key in vals %}
+<tr>
+    <td ><center>{{key.id_}}</center></td>
+    <td ><center>{{key.long}}</center></td>
+    <td ><center>{{key.short}}</center></td>
+    <td ><center>{{key.date}}</center></td>
+    <td ><center>{{key.time}}</center></td>
+</tr>
+{% endfor %}
+</body>
 {% endblock %}
